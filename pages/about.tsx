@@ -1,10 +1,10 @@
-import H1 from 'components/elements/H1'
+import H1 from 'components/elements/typography/H1'
 import Image from 'next/image'
-
+import faq from '@data/faq'
 function about() {
   return (
     <main className='xl:px-12 xl:pt-12 max-w-8xl mx-auto'>
-      <article>
+      <div>
         <div className='relative w-full mb-16'>
           <Image src={'/img/NECR_TitleCard.jpeg'} layout='responsive' width={1200} height={630} />
         </div>
@@ -28,7 +28,25 @@ function about() {
           </p>
           <p>We’re better together. It’s time to make our mark on the map.</p>
         </section>
-      </article>
+      </div>
+      <section>
+        <h2>FAQ</h2>
+        <div className='grid grid-cols-1 gap-y-6'>
+          {faq.map((faq, index) => {
+            return (
+              <div key={index}>
+                <h3>{faq.q}</h3>
+                <p
+                  className='mt-4'
+                  dangerouslySetInnerHTML={{
+                    __html: faq.a,
+                  }}
+                />
+              </div>
+            )
+          })}
+        </div>
+      </section>
     </main>
   )
 }

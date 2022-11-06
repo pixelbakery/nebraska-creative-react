@@ -3,11 +3,39 @@ import path from 'path'
 import { companyFilePath, COMPANIES_PATH } from '@lib/mdxUtils'
 import matter from 'gray-matter'
 import Link from 'next/link'
+import { useState } from 'react'
 
 function Page_Studios({ allCompanies }) {
+  const [activeFilter, setFilter] = useState('all')
+
+  const [filteredProjectFiles, setFilteredItems] = useState(allCompanies)
+
+  let allCategories = []
+  allCompanies.forEach(function (file, i) {
+    file.data.services.forEach((s) => {
+      if (!allCategories.includes(s)) {
+        allCategories.push(s)
+      }
+    })
+  })
+  allCategories.forEach((c) => console.log(c))
+  const filters = Array.from(new Set(allCategories))
+
+  const handleFilteredItems = (filter) => {
+    setFilter(filter)
+
+    if (filter === 'all') {
+      setFilteredItems(allCompanies)
+    } else {
+      setFilteredItems(allCompanies.filter((file) => file.services === filter))
+    }
+  }
   return (
     <div>
       <div>asdfasdgf</div>
+      {filters.map((f, i) => {
+        return <div key={i}>{f}</div>
+      })}
       <section>
         <ul>
           {allCompanies.map((company, index) => {
