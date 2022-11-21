@@ -1,0 +1,175 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "default",
+      "pageBundle": false,
+      "previewPath": null,
+      "fields": [
+        {
+          "title": "active",
+          "name": "active",
+          "type": "boolean"
+        },
+        {
+          "title": "name",
+          "name": "name",
+          "type": "string",
+          "single": true
+        },
+        {
+          "title": "Website",
+          "description": "Must include https://",
+          "name": "website",
+          "type": "string",
+          "default": "https://",
+          "single": true
+        },
+        {
+          "title": "Contact",
+          "description": "General point of contact for company",
+          "name": "contact",
+          "type": "string",
+          "default": "hello@example.com",
+          "single": true
+        },
+        {
+          "title": "Year Founded",
+          "name": "founded",
+          "type": "datetime"
+        },
+        {
+          "title": "Company Size",
+          "name": "size",
+          "type": "choice",
+          "choices": [
+            "",
+            "Boutique (2 to 10 employees)",
+            "Small (10 to 25 employees)",
+            "Medium (25 to 50 employees)",
+            "Large (50 to 100 employees)",
+            "Humongous (100+ Employees)"
+          ]
+        },
+        {
+          "title": "description",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "title": "Locations",
+          "name": "locations",
+          "type": "taxonomy",
+          "taxonomyId": "locations"
+        },
+        {
+          "title": "Notable Clients",
+          "name": "clients",
+          "type": "list"
+        },
+        {
+          "title": "services",
+          "name": "services",
+          "type": "choice",
+          "choices": ["2d animation", "Motion design", "Scripting & storyboarding"]
+        },
+        {
+          "title": "logo",
+          "name": "logo",
+          "type": "image"
+        },
+        {
+          "title": "Key People",
+          "name": "keyPeople",
+          "type": "block",
+          "fieldGroup": ["keyPeople"]
+        },
+        {
+          "title": "notableClients",
+          "name": "notableClients",
+          "type": "choice",
+          "choices": ["such and such", "who and whom", "disney, etc"]
+        },
+        {
+          "title": "Company Social Profiles",
+          "name": "socialProfiles",
+          "type": "block",
+          "fieldGroup": ["socialProfiles"]
+        },
+        {
+          "title": "type",
+          "name": "type",
+          "type": "string",
+          "hidden": true
+        }
+      ]
+    }
+  ],
+  "frontMatter.framework.id": "next",
+  "frontMatter.content.publicFolder": "public",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "_companies",
+      "path": "[[workspace]]/_companies"
+    }
+  ],
+  "frontMatter.taxonomy.tags": [],
+  "frontMatter.taxonomy.customTaxonomy": [
+    {
+      "id": "locations",
+      "options": ["Omaha", "Lincoln", "NW Arkansas"]
+    }
+  ],
+  "frontMatter.taxonomy.categories": [],
+  "frontMatter.taxonomy.fieldGroups": [
+    {
+      "id": "keyPeople",
+      "labelField": "name",
+      "fields": [
+        {
+          "title": "Headshot",
+          "description": "Images must be 500px x 500px",
+          "name": "headshot",
+          "type": "image",
+          "default": "img/placeholder_square.jpg"
+        },
+        {
+          "title": "Name",
+          "name": "name",
+          "type": "string",
+          "single": true
+        },
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "single": true
+        },
+        {
+          "title": "Link to Bio",
+          "name": "externalBio",
+          "type": "string",
+          "single": true
+        }
+      ]
+    },
+    {
+      "id": "socialProfiles",
+      "labelField": "platform",
+      "fields": [
+        {
+          "title": "Platform",
+          "name": "platform",
+          "type": "string",
+          "single": true
+        },
+        {
+          "title": "URL",
+          "name": "url",
+          "type": "string",
+          "single": true
+        }
+      ]
+    }
+  ]
+}
