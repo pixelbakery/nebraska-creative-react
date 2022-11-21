@@ -1,14 +1,23 @@
 import H1 from 'components/elements/typography/H1'
 import Image from 'next/image'
 import faq from '@data/faq'
+import Main from '@modules/Main'
+import H2 from 'components/elements/typography/H2'
+import Section from '@modules/Section'
+import NECR_TitleCard from 'public/img/NECR_TitleCard.jpeg'
 function about() {
   return (
-    <main className='xl:px-12 xl:pt-12 max-w-8xl mx-auto'>
+    <Main>
       <div>
         <div className='relative w-full mb-16'>
-          <Image src={'/img/NECR_TitleCard.jpeg'} layout='responsive' width={1200} height={630} />
+          <Image
+            src={NECR_TitleCard}
+            alt={
+              'Nebraska Creative is a resource for discovering design, advertising, and creative agencies in Nebraska'
+            }
+          />
         </div>
-        <section>
+        <Section id={'about-project'}>
           <H1>About the Project</H1>
           <p>
             <strong>The Nebraska Creative</strong> is your go-to resource for discovering design,
@@ -27,17 +36,17 @@ function about() {
             guys.
           </p>
           <p>We’re better together. It’s time to make our mark on the map.</p>
-        </section>
+        </Section>
       </div>
-      <section>
-        <h2>FAQ</h2>
+      <Section id={'faq'}>
+        <H2>FAQ</H2>
         <div className='grid grid-cols-1 gap-y-6'>
           {faq.map((faq, index) => {
             return (
               <div key={index}>
-                <h3>{faq.q}</h3>
+                <h3 className='text-lg font-semibold max-w-2xl'>{faq.q}</h3>
                 <p
-                  className='mt-4'
+                  className='mt-4 max-w-2xl'
                   dangerouslySetInnerHTML={{
                     __html: faq.a,
                   }}
@@ -46,8 +55,8 @@ function about() {
             )
           })}
         </div>
-      </section>
-    </main>
+      </Section>
+    </Main>
   )
 }
 

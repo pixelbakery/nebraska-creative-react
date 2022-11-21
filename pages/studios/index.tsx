@@ -3,13 +3,14 @@ import path from 'path'
 import { companyFilePath, COMPANIES_PATH } from '@lib/mdxUtils'
 import matter from 'gray-matter'
 import Link from 'next/link'
-import { useState } from 'react'
-
+import { Fragment, useState } from 'react'
+import H1 from 'components/elements/typography/H1'
+import Studios_Card from 'components/elements/cards/Studios_Card'
+import cn from 'classnames'
+import Main from '@modules/Main'
+import H2 from 'components/elements/typography/H2'
+import Section from '@modules/Section'
 function Page_Studios({ allCompanies }) {
-  const [activeFilter, setFilter] = useState('all')
-
-  const [filteredProjectFiles, setFilteredItems] = useState(allCompanies)
-
   let allCategories = []
   allCompanies.forEach(function (file, i) {
     file.data.services.forEach((s) => {
@@ -18,42 +19,123 @@ function Page_Studios({ allCompanies }) {
       }
     })
   })
-  allCategories.forEach((c) => console.log(c))
+  const [activeFilter, setActiveFilter] = useState(allCategories)
+  const [isAllActive, setAllActive] = useState(true)
+  const [filteredItems, setFilteredItems] = useState(allCompanies)
+
   const filters = Array.from(new Set(allCategories))
 
-  const handleFilteredItems = (filter) => {
-    setFilter(filter)
-
-    if (filter === 'all') {
-      setFilteredItems(allCompanies)
-    } else {
-      setFilteredItems(allCompanies.filter((file) => file.services === filter))
+  // Update what's included in the filter
+  const handleFilterChange = (e, filter) => {
+    setAllActive(false)
+    // If active filter should be set to all
+    if (activeFilter.length === allCategories.length) {
+      setActiveFilter([])
+      setActiveFilter((activeFilter) => [...activeFilter, `${filter}`])
+    }
+    //If current active filter includes a clicked filter item, remove it
+    else if (!activeFilter.includes(filter)) {
+      setActiveFilter((activeFilter) => [...activeFilter, `${filter}`])
+    }
+    //If current filter does not include clicked item, include it
+    else if (activeFilter.includes(filter)) {
+      setActiveFilter((current) => current.filter((f) => f !== filter))
     }
   }
+
+  // Reset the filter to include all companies
+  const handleAllItems = () => {
+    setAllActive(true)
+    setActiveFilter(allCategories)
+    setFilteredItems(allCompanies)
+  }
+
   return (
-    <div>
-      <div>asdfasdgf</div>
-      {filters.map((f, i) => {
-        return <div key={i}>{f}</div>
-      })}
+    <Main>
       <section>
-        <ul>
-          {allCompanies.map((company, index) => {
+        <H1>Creative Studios</H1>
+        <p>
+          The Nebraska Creative is your go-to resource for discovering design, advertising, and
+          creative agencies in the heart of the Midwest – aka good ol’ Nebraska. With the mindset of
+          collaboration over competition, The Nebraska Creative embraces a diverse range of creative
+          shops to showcase the assets and skills each has to offer – helping you find the perfect
+          team of individuals ready to refresh your business and bring new ideas to life.{' '}
+        </p>
+
+        <p>
+          Read more about{' '}
+          <Link href={'https://nebraska-creative.com/information'} className='underline'>
+            why we created
+          </Link>{' '}
+          this site.
+        </p>
+      </section>
+
+      <Section id='filters'>
+        <div>
+          <H2>Categories</H2>
+        </div>
+        <div className='flex flex-row gap-x-4 max-w-6xl flex-wrap gap-y-3'>
+          <button
+            onClick={(e) => handleAllItems()}
+            className={cn('px-4 py-1 border border-black rounded-full', {
+              [`bg-black text-white`]: isAllActive || activeFilter.length === 0,
+            })}
+          >
+            All
+          </button>
+          {filters.map((f, i) => {
             return (
-              <li key={index}>
-                <Link
-                  as={`/studios/${company.filePath.replace(/\.mdx?$/, '')}`}
-                  href={`/studios/[slug]`}
-                  passHref
-                >
-                  <a> {`${index}: ${company.data.name}`}</a>
-                </Link>
-              </li>
+              <button
+                onClick={(e) => handleFilterChange(e, f)}
+                className={cn('px-4 py-1 border border-black rounded-full', {
+                  ['bg-black text-white']: activeFilter.includes(f) && !isAllActive,
+                })}
+                key={i}
+              >
+                {f}
+              </button>
             )
           })}
-        </ul>
-      </section>
-    </div>
+        </div>
+      </Section>
+
+      <Section id={'results'}>
+        <div className='grid grid-cols-1 gap-y-12'>
+          {activeFilter.length != allCategories.length
+            ? allCompanies
+                // .filter((c) => c.data.services.some((r, i) => activeFilter.includes(r)))
+                .filter((c) => activeFilter.every((elem) => c.data.services.includes(elem)))
+                .map((c, index) => {
+                  return (
+                    <Fragment key={index}>
+                      <Studios_Card index={index} company={c} />
+                    </Fragment>
+                  )
+                })
+            : allCompanies.map((c, index) => {
+                return (
+                  <Fragment key={index}>
+                    <Studios_Card index={index} company={c} />
+                  </Fragment>
+                )
+              })}
+          {/* {allCompanies.filter((c) =>
+              c.data.services.includes(activeFilter.includes(c.data.services)).map((c) => 'test'),
+            )} */}
+
+          {filteredItems
+            .filter((c) => c.data.services.includes(activeFilter))
+            .map((company, index) => {
+              return (
+                <Fragment key={index}>
+                  <Studios_Card index={index} company={company} />
+                </Fragment>
+              )
+            })}
+        </div>
+      </Section>
+    </Main>
   )
 }
 export default Page_Studios
