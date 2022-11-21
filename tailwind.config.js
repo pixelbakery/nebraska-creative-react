@@ -10,12 +10,27 @@ module.exports = {
     colors: {
       black: '#121212',
       white: '#ffffff',
-      gray: 'rgb(108, 117, 125)',
-      grey: 'rgb(108, 117, 125)',
-      'grey-dark': 'rgb(52, 58, 64)',
-      'gray-dark': 'rgb(52, 58, 64)',
+
+      grey: { light: '#f9f9f9', DEFAULT: 'rgb(108, 117, 125)', dark: 'rgb(52, 58, 64)' },
     },
-    extend: {},
+    extend: {
+      scale: {
+        99: '99%',
+      },
+      animation: {
+        wiggle: 'wiggle 3s linear infinite',
+      },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'translate-X(0px)' },
+          '50%': { transform: 'translate-X(4px)' },
+        },
+      },
+      borderWidth: {
+        10: '10px',
+        12: '12px',
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
