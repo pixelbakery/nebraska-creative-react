@@ -5,8 +5,6 @@ import { Footer, Nav } from '@modules/index'
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      {/* <Header /> */}
-
       <div className='flex w-full'>
         <Nav />
         <div className='w-full px-8 lg:px-4'>
