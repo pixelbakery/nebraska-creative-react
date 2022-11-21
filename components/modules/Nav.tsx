@@ -1,7 +1,7 @@
 import Nav_HamWrapper from 'components/elements/navigation/Nav_HamWrapper'
 import Image from 'next/image'
 import Link from 'next/link'
-
+import NE_creative_logo from 'public/img/NE_creative_logo.png'
 function Nav() {
   return (
     <>
@@ -9,15 +9,16 @@ function Nav() {
         <Link href={'/'}>
           <div className='mx-auto w-full aspect-w-1 aspect-h-1 cursor-pointer'>
             <Image
-              src='/img/NE_creative_logo.png'
-              layout='fill'
-              objectFit='contain'
+              width={1080}
+              height={1080}
+              src={NE_creative_logo}
+              className='object-contain'
               alt='The Nebraska Creative is a collection of design studios, advertising agencies, and creative shops in Nebraska.'
             />
           </div>
         </Link>
         <div className='my-8 text-white opacity-90 text-lg italic font-extrabold text-center font-heading'>
-          Collaboration Over Competition
+          Collaboration Over Competition. Always.
         </div>
         <div className='my-12'>
           <ul className='text-white text-2xl font-bold uppercase flex flex-col gap-y-4'>

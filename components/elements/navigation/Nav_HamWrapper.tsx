@@ -9,7 +9,7 @@ const Nav_HamWrapper = () => {
   return (
     <div className=' fixed right-0 top-0 mr-6 mt-6 z-50 lg:hidden'>
       <Nav_HamburgerNav isActive={isHamActive} onModalUpdate={setHamToggle} />
-      <Nav_FullscreenMenu isActive={isHamActive} onModalUpdate={setHamToggle} />
+      <Nav_FullscreenMenu isActive={isHamActive} setHamToggle={setHamToggle} />
     </div>
   )
 }

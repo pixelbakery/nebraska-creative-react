@@ -1,8 +1,12 @@
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 //Public Dev Note: The html and css for the hamburger nav is forked from Mikael Ainalem's Flippin' Burgers pen: https://codepen.io/ainalem/pen/LJYRxz All credit goes to him <3
 
-function Nav_FullscreenMenu({ isActive, onModalUpdate }) {
+function Nav_FullscreenMenu({ isActive, setHamToggle }) {
+  function handleItemClick() {
+    setHamToggle(false)
+  }
   const container = {
     hidden: {
       transition: {
@@ -41,9 +45,26 @@ function Nav_FullscreenMenu({ isActive, onModalUpdate }) {
       >
         <div className='relative w-full h-full flex justify-center'>
           <ul className='self-center flex flex-col justify-center font-bold text-2xl text-white'>
-            <motion.li variants={item}>Item 01</motion.li>
-            <motion.li variants={item}>Item 02</motion.li>
-            <motion.li variants={item}>Item 03</motion.li>
+            <motion.li variants={item}>
+              <Link href='/' onClick={() => setHamToggle(false)}>
+                Home
+              </Link>
+            </motion.li>
+            <motion.li variants={item}>
+              <Link href='/studios' onClick={() => setHamToggle(false)}>
+                Creative Studios
+              </Link>
+            </motion.li>
+            <motion.li variants={item}>
+              <Link href='/about' onClick={() => setHamToggle(false)}>
+                Information
+              </Link>
+            </motion.li>
+            <motion.li variants={item}>
+              <Link href='/contact' onClick={() => setHamToggle(false)}>
+                Contact
+              </Link>
+            </motion.li>
           </ul>
         </div>
       </motion.div>
