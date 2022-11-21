@@ -28,7 +28,9 @@
       "@types/*": ["types/*"],
       "@hooks/*": ["hooks/*"],
       "@styles/*": ["styles/*"],
-      "@typography/*": ["components/typography/*"]
+      "@typography/*": ["components/elements/typography/*"],
+      "@icons/*": ["components/elements/iconography/*"],
+      "@ui/*": ["components/elements/ui/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
