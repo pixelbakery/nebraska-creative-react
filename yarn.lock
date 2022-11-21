@@ -152,7 +152,7 @@
     hey-listen "^1.0.8"
     tslib "^2.3.1"
 
-"@next/env@13.0.4":
+"@next/env@13.0.4", "@next/env@^13.0.4":
   version "13.0.4"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-13.0.4.tgz#249a21be88fa61e1a712939db00b9d02764831f4"
   integrity sha512-N5Z3bdxBzoxrC5bwykDFITzdWuwDteOdZ+7nxixY+I1XpRX8/iQYbw2wuXMdqdfBGm2NNUpAqg8YF2e4oAC2UQ==

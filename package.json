@@ -23,6 +23,7 @@
     "printWidth": 100
   },
   "dependencies": {
+    "@next/env": "^13.0.4",
     "classnames": "^2.3.1",
     "framer-motion": "^7.6.4",
     "gray-matter": "^4.0.3",
