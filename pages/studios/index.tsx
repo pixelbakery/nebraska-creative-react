@@ -10,7 +10,14 @@ import cn from 'classnames'
 import Main from '@modules/Main'
 import H2 from 'components/elements/typography/H2'
 import Section from '@modules/Section'
-function Page_Studios({ allCompanies }) {
+
+interface Props {
+  data?: any
+  person?: any
+  allCompanies: any
+}
+
+function Page_Studios({ allCompanies }: Props) {
   let allCategories = []
   allCompanies.forEach(function (file, i) {
     file.data.services.forEach((s) => {
@@ -19,10 +26,25 @@ function Page_Studios({ allCompanies }) {
       }
     })
   })
-  const [activeFilter, setActiveFilter] = useState(allCategories)
+  const [activeFilter, setActiveFilter] = useState(allCategories as any)
   const [isAllActive, setAllActive] = useState(true)
   const [filteredItems, setFilteredItems] = useState(allCompanies)
 
+  // SEARCH BOX
+  const companies: any = Array.from(new Set(allCompanies))
+
+  const [searchTerm, setSearchTerm] = useState('')
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value)
+  }
+
+  const results = !searchTerm
+    ? companies
+    : companies.filter((company) =>
+        company.data.name.toLowerCase().includes(searchTerm.toLocaleLowerCase()),
+      )
+
+  //END SEARCH BOX
   const filters = Array.from(new Set(allCategories))
 
   // Update what's included in the filter
@@ -98,12 +120,22 @@ function Page_Studios({ allCompanies }) {
             )
           })}
         </div>
+        <div className='my-12'>
+          <H2>Search</H2>
+          <input
+            className='border-black rounded-full border-2 w-full py-2 px-4 focus:ring-black ring-inset'
+            type='text'
+            placeholder='Search'
+            value={searchTerm}
+            onChange={handleChange}
+          />
+        </div>
       </Section>
-
+      {results.length === 0 ? 'No Results Found' : ''}
       <Section id={'results'}>
         <div className='grid grid-cols-1 gap-y-12'>
           {activeFilter.length != allCategories.length
-            ? allCompanies
+            ? results
                 // .filter((c) => c.data.services.some((r, i) => activeFilter.includes(r)))
                 .filter((c) => activeFilter.every((elem) => c.data.services.includes(elem)))
                 .map((c, index) => {
@@ -113,26 +145,13 @@ function Page_Studios({ allCompanies }) {
                     </Fragment>
                   )
                 })
-            : allCompanies.map((c, index) => {
+            : results.map((c, index) => {
                 return (
                   <Fragment key={index}>
                     <Studios_Card index={index} company={c} />
                   </Fragment>
                 )
               })}
-          {/* {allCompanies.filter((c) =>
-              c.data.services.includes(activeFilter.includes(c.data.services)).map((c) => 'test'),
-            )} */}
-
-          {filteredItems
-            .filter((c) => c.data.services.includes(activeFilter))
-            .map((company, index) => {
-              return (
-                <Fragment key={index}>
-                  <Studios_Card index={index} company={company} />
-                </Fragment>
-              )
-            })}
         </div>
       </Section>
     </Main>
