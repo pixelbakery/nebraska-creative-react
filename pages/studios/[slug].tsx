@@ -14,6 +14,7 @@ import H2 from '@typography/H2'
 import Section from '@modules/Section'
 import H3 from '@typography/H3'
 import ExternalLink from '@icons/ExternalLink'
+import { NextSeo } from 'next-seo'
 
 import { removeHttp } from '@lib/helpers'
 import Button_Filled_Back from '@ui/Button_Filled_Back'
@@ -55,7 +56,33 @@ function Slug_Companies({ slug, source, frontMatter }) {
 
   return (
     <Main>
+      <NextSeo
+        title={`${frontMatter.name}`}
+        description={`${frontMatter.description}`}
+        canonical={`https://nebraska-creative.com/studios/${slug}`}
+        openGraph={{
+          url: `https://nebraska-creative.com/studios/${slug}`,
+          title: `${frontMatter.name}`,
+          description: `${frontMatter.description}`,
+          images: [
+            {
+              url: 'https://pixelbakery.com/img/NECR_TitleCard.jpeg',
+              width: 1200,
+              height: 630,
+              alt: `Read all about why ${frontMatter.name} is a great creative studio.`,
+              type: 'image/jpeg',
+            },
+          ],
+          siteName: 'Nebraska Creative',
+        }}
+        twitter={{
+          handle: '@pixelbakerylnk',
+          site: '@site',
+          cardType: 'summary_large_image',
+        }}
+      />
       <H1>{frontMatter.name}</H1>
+      {`https://nebraska-creative.com/studios/${slug}`}
       <Section id={'details'} className={''}>
         <div className='grid grid-cols-2 lg:grid-cols-5 gap-x-12 mb-20 gap-y-12'>
           <div className='col-span-1 lg:col-span-2'>
@@ -189,7 +216,7 @@ function Slug_Companies({ slug, source, frontMatter }) {
                   {frontMatter.keyPeople.map((l) => {
                     return (
                       <li key={l} className={''}>
-                        <div className='w-48 h-48'>
+                        <div className='w-48 h-48 overflow-hidden'>
                           {l.externalBio ? (
                             <Link href={l.externalBio}>
                               <Headshot l={l} name={frontMatter.name} />

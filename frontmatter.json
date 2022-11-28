@@ -68,10 +68,10 @@
           "type": "list"
         },
         {
-          "title": "services",
+          "title": "Services",
           "name": "services",
-          "type": "choice",
-          "choices": ["2d animation", "Motion design", "Scripting & storyboarding"]
+          "type": "taxonomy",
+          "taxonomyId": "services"
         },
         {
           "title": "logo",
@@ -85,12 +85,6 @@
           "fieldGroup": ["keyPeople"]
         },
         {
-          "title": "notableClients",
-          "name": "notableClients",
-          "type": "choice",
-          "choices": ["such and such", "who and whom", "disney, etc"]
-        },
-        {
           "title": "Company Social Profiles",
           "name": "socialProfiles",
           "type": "block",
@@ -100,6 +94,7 @@
           "title": "type",
           "name": "type",
           "type": "string",
+          "default": "_companies",
           "hidden": true
         }
       ]
@@ -118,9 +113,14 @@
     {
       "id": "locations",
       "options": ["Omaha", "Lincoln", "NW Arkansas"]
+    },
+    {
+      "id": "services",
+      "options": []
     }
   ],
   "frontMatter.taxonomy.categories": [],
+
   "frontMatter.taxonomy.fieldGroups": [
     {
       "id": "keyPeople",
