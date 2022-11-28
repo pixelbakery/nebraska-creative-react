@@ -216,7 +216,7 @@ function Slug_Companies({ slug, source, frontMatter }) {
                   {frontMatter.keyPeople.map((l) => {
                     return (
                       <li key={l} className={''}>
-                        <div className='w-48 h-48'>
+                        <div className='w-48 h-48 overflow-hidden'>
                           {l.externalBio ? (
                             <Link href={l.externalBio}>
                               <Headshot l={l} name={frontMatter.name} />
