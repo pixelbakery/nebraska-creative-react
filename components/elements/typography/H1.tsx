@@ -5,13 +5,16 @@ type Props = {
   color?: string
   className?: string
 }
-function H1({ children }) {
+function H1({ children, className }) {
   return (
-    <section className='my-16 border-b-12 border-b-grey-dark'>
-      <h1 className=' font-extrabold text-6xl 2xl:text-[6rem] text-grey-dark leading-none tracking-tighter mb-8'>
-        {children}
-      </h1>
-    </section>
+    <h1
+      className={cn(
+        'mt-16  mb-20  pb-10 border-b-12 border-b-grey-dark font-extrabold text-6xl 2xl:text-[6rem] text-grey-dark leading-none tracking-tighter ',
+        { [`${className}]`]: className },
+      )}
+    >
+      {children}
+    </h1>
   )
 }
 
