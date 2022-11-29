@@ -1,0 +1,2 @@
+[11/29/2022, 12:38:54 PM] layer "CreativeOlsen_NateOlsen.jpg": Duplicate path: CreativeOlsen_NateOlsen.jpg
+[11/29/2022, 12:39:15 PM] layer "CreativeOlsen_NateOlsen.jpg": Duplicate path: CreativeOlsen_NateOlsen.jpg
