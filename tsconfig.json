@@ -30,7 +30,8 @@
       "@styles/*": ["styles/*"],
       "@typography/*": ["components/elements/typography/*"],
       "@icons/*": ["components/elements/iconography/*"],
-      "@ui/*": ["components/elements/ui/*"]
+      "@ui/*": ["components/elements/ui/*"],
+      "@studios/*": ["components/layouts/studios/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
