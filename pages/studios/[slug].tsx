@@ -3,46 +3,23 @@ import path from 'path'
 import matter from 'gray-matter'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
-import { companyFilePath, COMPANIES_PATH } from '@lib/mdxUtils'
+import { companyFilePath } from '@lib/mdxUtils'
 import remarkGfm from 'remark-gfm'
 import Head from 'next/head'
 import Link from 'next/link'
 import H1 from '@typography/H1'
 import { Main } from '@modules'
-import Image from 'next/image'
 import H2 from '@typography/H2'
 import Section from '@modules/Section'
 import H3 from '@typography/H3'
 import ExternalLink from '@icons/ExternalLink'
-import { NextSeo } from 'next-seo'
-
 import { removeHttp } from '@lib/helpers'
-import Button_Filled_Back from '@ui/Button_Filled_Back'
+import Section_Headshots from '@studios/Section_Headshots'
+import Section_PrevNext from '@studios/Section_PrevNext'
+import Section_Back from '@studios/Section_Back'
+import Section_NextSeo from '@studios/Section_NextSeo'
 
-const Headshot = ({ l, name }) => {
-  return (
-    <>
-      {l.headshot ? (
-        <Image
-          width={500}
-          height={500}
-          className={'object-cover filter grayscale'}
-          src={l.headshot}
-          alt={`${l.name} is the ${l.title} for ${name}`}
-        />
-      ) : (
-        <Image
-          width={500}
-          height={500}
-          className={'object-cover filter grayscale'}
-          src={'/img/placeholder_square.jpg'}
-          alt={`${l.name} is the ${l.title} for ${name}`}
-        />
-      )}
-    </>
-  )
-}
-function Slug_Companies({ slug, source, frontMatter }) {
+const Slug_Companies = ({ slug, source, frontMatter, prevIndex, nextIndex }) => {
   // Custom components/renderers to pass to MDX.
   // Since the MDX files aren't loaded by webpack, they have no knowledge of how
   // to handle import statements. Instead, you must include components in scope
@@ -51,38 +28,12 @@ function Slug_Companies({ slug, source, frontMatter }) {
     // It also works with dynamically-imported components, which is especially
     // useful for conditionally loading components for certain routes.
     // See the notes in README.md for more details.
-    Head,
   }
 
   return (
     <Main>
-      <NextSeo
-        title={`${frontMatter.name}`}
-        description={`${frontMatter.description}`}
-        canonical={`https://nebraska-creative.com/studios/${slug}`}
-        openGraph={{
-          url: `https://nebraska-creative.com/studios/${slug}`,
-          title: `${frontMatter.name}`,
-          description: `${frontMatter.description}`,
-          images: [
-            {
-              url: 'https://pixelbakery.com/img/NECR_TitleCard.jpeg',
-              width: 1200,
-              height: 630,
-              alt: `Read all about why ${frontMatter.name} is a great creative studio.`,
-              type: 'image/jpeg',
-            },
-          ],
-          siteName: 'Nebraska Creative',
-        }}
-        twitter={{
-          handle: '@pixelbakerylnk',
-          site: '@site',
-          cardType: 'summary_large_image',
-        }}
-      />
+      <Section_NextSeo name={frontMatter.name} description={frontMatter.description} slug={slug} />
       <H1>{frontMatter.name}</H1>
-      {`https://nebraska-creative.com/studios/${slug}`}
       <Section id={'details'} className={''}>
         <div className='grid grid-cols-2 lg:grid-cols-5 gap-x-12 mb-20 gap-y-12'>
           <div className='col-span-1 lg:col-span-2'>
@@ -102,20 +53,24 @@ function Slug_Companies({ slug, source, frontMatter }) {
               </>
             </Link>
           </div>
-          <div className='col-span-1'>
-            <H3>New Business</H3>
-            <Link
-              href={`mailto:${frontMatter.contact}`}
-              className='text-grey border-b border-dotted hover:text-black duration-300 ease-in-out fill-grey hover:fill-black'
-            >
-              <>
-                {frontMatter.contact}{' '}
-                <i className='inline-block w-3 '>
-                  <ExternalLink />
-                </i>
-              </>
-            </Link>
-          </div>
+          {frontMatter.contact != '' || undefined ? (
+            <div className='col-span-1'>
+              <H3>New Business</H3>
+              <Link
+                href={`mailto:${frontMatter.contact}`}
+                className='text-grey border-b border-dotted hover:text-black duration-300 ease-in-out fill-grey hover:fill-black'
+              >
+                <>
+                  {frontMatter.contact}{' '}
+                  <i className='inline-block w-3 '>
+                    <ExternalLink />
+                  </i>
+                </>
+              </Link>
+            </div>
+          ) : (
+            ''
+          )}
           <div className='col-span-1'>
             {frontMatter.socialProfiles != undefined ? (
               <div>
@@ -162,7 +117,7 @@ function Slug_Companies({ slug, source, frontMatter }) {
       <Section id={'facts'} className={'border-b-12 border-b-grey-dark'}>
         <H2>Details About {frontMatter.name}</H2>
 
-        <div className='grid grid-cols-4 gap-x-12 gap-y-24 mt-24'>
+        <div className='grid grid-cols-4 gap-x-12 gap-y-24 mt-24 mb-12'>
           <div className='col-span-2 lg:col-span-1'>
             {frontMatter.locations != undefined ? (
               <div>
@@ -205,39 +160,15 @@ function Slug_Companies({ slug, source, frontMatter }) {
             <H3 className='underline underline-offset-8'>Shop Size</H3>
             <p>{frontMatter.size}</p>
           </div>
-
-          <div className='col-span-4'>
-            {frontMatter.keyPeople != undefined ? (
-              <div className='w-full'>
-                <div className='mb-12'>
-                  <H3 className='underline underline-offset-8'>Key People</H3>
-                </div>
-                <ul className='flex flex-row flex-wrap gap-x-8'>
-                  {frontMatter.keyPeople.map((l) => {
+          <div className='col-span-2 lg:col-span-1'>
+            {frontMatter.clients != '' || frontMatter.clients != undefined ? (
+              <div>
+                <H3 className='underline underline-offset-8'>Notable Clients</H3>
+                <ul className='list-none grid grid-cols-1 gap-x-4 gap-y-2 text-grey '>
+                  {frontMatter.clients.map((l) => {
                     return (
-                      <li key={l} className={''}>
-                        <div className='w-48 h-48 overflow-hidden'>
-                          {l.externalBio ? (
-                            <Link href={l.externalBio}>
-                              <Headshot l={l} name={frontMatter.name} />
-                            </Link>
-                          ) : (
-                            <Headshot l={l} name={frontMatter.name} />
-                          )}
-                        </div>
-                        {l.externalBio ? (
-                          <Link href={l.externalBio} className='cursor-pointer'>
-                            <>
-                              <p className='mb-0 mt-3 py-0 leading-none text-black'>{l.name}</p>
-                              <p className='text-sm mt-0 italic pt-0'>{l.title}</p>
-                            </>
-                          </Link>
-                        ) : (
-                          <>
-                            <p className='mb-0 mt-3 py-0 leading-none text-black'>{l.name}</p>
-                            <p className='text-sm mt-0 italic pt-0'>{l.title}</p>
-                          </>
-                        )}
+                      <li className='leading-snug my-0 py-0' key={l}>
+                        {l}
                       </li>
                     )
                   })}
@@ -247,36 +178,59 @@ function Slug_Companies({ slug, source, frontMatter }) {
               ''
             )}
           </div>
-          <div>
-            {frontMatter.clients != undefined ? (
-              <div>
-                <h3>Notable Clients</h3>
-                {frontMatter.clients.map((l) => {
-                  return <p key={l}>{l}</p>
-                })}
-              </div>
-            ) : (
-              ''
-            )}
-          </div>
+          <Section_Headshots keyPeople={frontMatter.keyPeople} name={frontMatter.name} />
         </div>
       </Section>
-      <Section id={'back'}>
-        <Button_Filled_Back href={'/studios'} text={'Creative Shops'} />
-      </Section>
+      <Section_Back />
+      <Section_PrevNext prev={prevIndex} next={nextIndex} />
     </Main>
   )
 }
 
 export const getStaticProps = async ({ params }) => {
-  //MDX Stuff
-  const jobsFilePath = path.join(COMPANIES_PATH, `${params.slug}.mdx`)
-  const source = fs.readFileSync(jobsFilePath)
-  const { content, data } = matter(source)
+  const COMPANIES_PATH = path.join(process.cwd(), '_companies')
+  const temp = fs.readdirSync(COMPANIES_PATH).filter((path) => /\.mdx?$/.test(path))
 
+  //MDX Stuff
+  const companiesFilePaths = path.join(COMPANIES_PATH, `${params.slug}.mdx`)
+  const source = fs.readFileSync(companiesFilePaths)
+  const { content, data } = matter(source)
   data.founded = JSON.parse(data.founded)
 
-  //END OF RELEVANT POSTS
+  //get prev next post
+  const allPeople = temp
+    .map((filePath) => {
+      const source = fs.readFileSync(path.join(COMPANIES_PATH, filePath))
+      const { data } = matter(source)
+
+      return { filePath, data }
+    })
+    .filter((cs) => cs.data.active === true)
+    .sort((cs1, cs2) => (cs1.data.name < cs2.data.name ? -1 : 1))
+
+  //Find the previous and next person on the roster, alphabetically by last name.
+  let thisIndex,
+    prevIndex,
+    nextIndex = null
+
+  if (data.active != false) {
+    allPeople.map((p, index) => {
+      if (p.data.name === data.name) {
+        thisIndex = index
+      }
+    })
+
+    if (thisIndex != undefined && thisIndex === 0)
+      prevIndex = allPeople[Object.keys(allPeople).length - 1]
+    else prevIndex = allPeople[thisIndex - 1]
+
+    if (thisIndex != undefined && thisIndex === Object.keys(allPeople).length - 1)
+      nextIndex = allPeople[0]
+    else nextIndex = allPeople[thisIndex + 1]
+  } else (thisIndex = null), (nextIndex = null), (prevIndex = null)
+
+  //End of prev/next search
+
   //Back to MDX Stuff
   const mdxSource = await serialize(content, {
     // Optionally pass remark/rehype plugins
@@ -291,6 +245,8 @@ export const getStaticProps = async ({ params }) => {
     props: {
       slug: params.slug,
       source: mdxSource,
+      prevIndex: prevIndex,
+      nextIndex: nextIndex,
       frontMatter: data,
     },
   }

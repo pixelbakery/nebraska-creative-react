@@ -3,7 +3,7 @@ import Headshot_Card from '@studios/Headshot_Card'
 import H3 from '@typography/H3'
 const Section_Headshots = ({ keyPeople, name }) => {
   return (
-    <div className='col-span-4'>
+    <div className='col-span-4 lg:col-span-3'>
       {keyPeople != '' || undefined ? (
         <div className='w-full'>
           <div className='mb-12'>

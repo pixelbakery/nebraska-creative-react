@@ -32,7 +32,7 @@ const Next = ({ next }) => {
     >
       <div className='text-white flex gap-x-6'>
         <div>
-          <span>prev</span>
+          <span>next</span>
           <p className='text-white font-semibold text-xl'>{next.data.name}</p>
         </div>
         <i className='self-center block text-white fill-white w-4'>
