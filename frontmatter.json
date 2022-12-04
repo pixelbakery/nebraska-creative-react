@@ -36,7 +36,7 @@
         {
           "title": "Year Founded",
           "name": "founded",
-          "type": "datetime"
+          "type": "number"
         },
         {
           "title": "Company Size",
@@ -70,8 +70,7 @@
         {
           "title": "Services",
           "name": "services",
-          "type": "taxonomy",
-          "taxonomyId": "services"
+          "type": "categories"
         },
         {
           "title": "logo",
@@ -116,11 +115,10 @@
     },
     {
       "id": "services",
-      "options": []
+      "options": ["Graphic Design", "Animation", ""]
     }
   ],
-  "frontMatter.taxonomy.categories": [],
-
+  "frontMatter.taxonomy.categories": ["2d Animation"],
   "frontMatter.taxonomy.fieldGroups": [
     {
       "id": "keyPeople",
