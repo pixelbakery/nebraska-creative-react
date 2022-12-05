@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://nebraska-creative.com
+
+# Sitemaps
+Sitemap: https://nebraska-creative.com/sitemap.xml
