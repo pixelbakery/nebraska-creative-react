@@ -23,13 +23,19 @@ function Nav() {
         <div className='my-12'>
           <ul className='text-white text-2xl font-bold uppercase flex flex-col gap-y-4'>
             <li className='w-fit border-b border-black hover:border-white hover:border-b duration-300'>
-              <Link href={'/studios'}>Creative Shops</Link>
+              <Link href={'/studios'} className='text-white'>
+                Creative Shops
+              </Link>
             </li>
             <li className='w-fit border-b border-black hover:border-white hover:border-b duration-300'>
-              <Link href={'/about'}>Information</Link>
+              <Link href={'/about'} className='text-white'>
+                Information
+              </Link>
             </li>
             <li className='w-fit border-b border-black hover:border-white hover:border-b duration-300'>
-              <Link href={'/contact'}>Contact</Link>
+              <Link href={'/contact'} className='text-white'>
+                Contact
+              </Link>
             </li>
           </ul>
         </div>

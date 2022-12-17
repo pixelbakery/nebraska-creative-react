@@ -10,7 +10,7 @@ const Studios_Card = ({ company, index }) => {
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
         exit={{ opacity: 0 }}
-        className='group hover:scale-[100.5%] hover:animate-pulse ease-in-out duration-300 bg-grey-light px-8 py-12 bg-gray rounded-sm cursor-pointer'
+        className='group hover:border-black hover:border hover:scale-[100.5%] hover:animate-pulse ease-in-out duration-300 bg-grey-light px-8 py-8 bg-gray rounded-sm cursor-pointer'
       >
         <H3>{`${company.data.name}`}</H3>
         <div className='grid grid-cols-6 gap-x-12'>

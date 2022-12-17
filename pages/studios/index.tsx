@@ -95,38 +95,42 @@ function Page_Studios({ allCompanies }: Props) {
       </section>
 
       <Section id='filters'>
-        <div>
-          <H2>Categories</H2>
-        </div>
-        <div className='flex flex-row gap-x-4 max-w-6xl flex-wrap gap-y-3'>
-          <button
-            onClick={(e) => handleAllItems()}
-            className={cn('px-4 py-1 border border-black rounded-full', {
-              [`bg-black text-white`]: isAllActive || activeFilter.length === 0,
+        <div className='grid grid-cols-4'>
+          <div className='col-span-4 lg:col-span-1'>
+            <H2>Categories</H2>
+          </div>
+          <div className='col-span-4 lg:col-span-3 flex flex-row gap-x-4 max-w-6xl flex-wrap gap-y-3'>
+            <button
+              onClick={(e) => handleAllItems()}
+              className={cn('px-4 py-1 border border-black rounded-full', {
+                [`bg-black text-white`]: isAllActive || activeFilter.length === 0,
+              })}
+            >
+              All
+            </button>
+            {filters.map((f, i) => {
+              return (
+                <button
+                  onClick={(e) => handleFilterChange(e, f)}
+                  className={cn('px-4 py-1 border border-black rounded-full', {
+                    ['bg-black text-white']: activeFilter.includes(f) && !isAllActive,
+                  })}
+                  key={i}
+                >
+                  {f}
+                </button>
+              )
             })}
-          >
-            All
-          </button>
-          {filters.map((f, i) => {
-            return (
-              <button
-                onClick={(e) => handleFilterChange(e, f)}
-                className={cn('px-4 py-1 border border-black rounded-full', {
-                  ['bg-black text-white']: activeFilter.includes(f) && !isAllActive,
-                })}
-                key={i}
-              >
-                {f}
-              </button>
-            )
-          })}
+          </div>
         </div>
-        <div className='my-12'>
-          <H2>Search</H2>
+        <div className='my-16 grid grid-cols-4'>
+          <div className='col-span-4 lg:col-span-1'>
+            <H2>Search</H2>
+          </div>
           <input
-            className='border-black rounded-full border-2 w-full py-2 px-4 focus:ring-black ring-inset'
+            className='col-span-4 lg:col-span-3 border-black rounded-lg border focus:border-2 focus:border-black w-full py-1 px-4 focus:ring-black ring-inset'
             type='text'
-            placeholder='Search'
+            placeholder='Search for a specific shop'
             value={searchTerm}
             onChange={handleChange}
           />
@@ -134,7 +138,7 @@ function Page_Studios({ allCompanies }: Props) {
       </Section>
       {results.length === 0 ? 'No Results Found' : ''}
       <Section id={'results'}>
-        <div className='grid grid-cols-1 gap-y-12'>
+        <div className='grid grid-cols-1 gap-y-6'>
           {activeFilter.length != allCategories.length
             ? results
                 // .filter((c) => c.data.services.some((r, i) => activeFilter.includes(r)))
