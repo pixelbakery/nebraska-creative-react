@@ -46,6 +46,7 @@ function Page_Studios({ allCompanies }: Props) {
 
   //END SEARCH BOX
   const filters = Array.from(new Set(allCategories))
+  filters.sort((a, b) => (a > b ? 1 : -1))
 
   // Update what's included in the filter
   const handleFilterChange = (e, filter) => {
