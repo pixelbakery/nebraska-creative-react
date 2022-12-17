@@ -118,7 +118,26 @@
       "options": ["Graphic Design", "Animation", ""]
     }
   ],
-  "frontMatter.taxonomy.categories": ["2d Animation"],
+  "frontMatter.taxonomy.categories": [
+    "Advertising",
+    "Animation",
+    "Aerial Photo/Video",
+    "Branding",
+    "Copywriting",
+    "Creative Strategy",
+    "Field Marketing",
+    "Graphic Design",
+    "Insights",
+    "Marketing Campaigns",
+    "NIL",
+    "Print Design",
+    "Product Photography",
+    "Public Relations",
+    "Social Media",
+    "Video Production",
+    "UI/UX",
+    "Web Development"
+  ],
   "frontMatter.taxonomy.fieldGroups": [
     {
       "id": "keyPeople",
