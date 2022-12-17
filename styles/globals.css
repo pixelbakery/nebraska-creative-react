@@ -41,6 +41,9 @@
   p {
     @apply text-grey leading-relaxed mb-4 max-w-3xl;
   }
+  li {
+    @apply text-grey leading-relaxed max-w-3xl;
+  }
   * {
     box-sizing: border-box;
   }

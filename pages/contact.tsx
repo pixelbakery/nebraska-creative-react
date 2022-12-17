@@ -159,6 +159,23 @@ const Contact = () => {
           template for the info you should provide. Giving us this info helps us make your listing
           as accurate as possible.
         </p>
+        <p>
+          Want your creative shop to be on this list? Make sure you meet the requirements below.
+        </p>
+        <p className='font-semibold'>Requirements:</p>
+        <ul>
+          <li>
+            – Your shop must primarily focus on some form of design. We do not accept marketing or
+            SEO agencies
+          </li>
+          <li> – Your shop must have been founded more than one year ago </li>
+          <li>
+            – You must have more than two people on your team. Otherwise, we consider you a
+            freelancer
+          </li>
+          <li> – Your shop must be held in good standing within the Nebraska community. </li>
+          <li> – Your shop must have a website</li>
+        </ul>
         <div>
           {submitted ? (
             <ContactForm_ThankYou />
