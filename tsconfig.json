@@ -31,7 +31,8 @@
       "@typography/*": ["components/elements/typography/*"],
       "@icons/*": ["components/elements/iconography/*"],
       "@ui/*": ["components/elements/ui/*"],
-      "@studios/*": ["components/layouts/studios/*"]
+      "@studios/*": ["components/layouts/studios/*"],
+      "@forms/*": ["components/elements/forms/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

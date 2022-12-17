@@ -44,4 +44,18 @@
   * {
     box-sizing: border-box;
   }
+  label.radio-button {
+    @apply block relative border-black border  rounded-sm font-medium py-2   text-lg text-black cursor-pointer focus:ring-1 focus:border-black  focus:ring-black peer-checked:bg-black peer-checked:text-white hover:scale-98 duration-300 mt-2 w-32 text-center;
+  }
+  input.form-input,
+  textarea.form-input {
+    @apply border border-black  rounded-sm w-full font-medium py-4  px-8 text-lg text-black cursor-text focus:ring-1 focus:border-black  focus:ring-black;
+  }
+  input.form-input.error,
+  textarea.form-input.error {
+    @apply border-error focus:border-error focus:ring-error;
+  }
+  input.form-submit {
+    @apply bg-black text-lg font-bold text-white rounded-sm px-8 py-3  cursor-pointer hover:scale-98 duration-300 disabled:hover:scale-100 disabled:bg-opacity-30;
+  }
 }

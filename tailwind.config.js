@@ -10,11 +10,15 @@ module.exports = {
     colors: {
       black: '#121212',
       white: '#ffffff',
+      error: '#ff0033',
+      transparent: 'transparent',
 
       grey: { light: '#f9f9f9', DEFAULT: 'rgb(108, 117, 125)', dark: 'rgb(52, 58, 64)' },
     },
     extend: {
       scale: {
+        98: '98%',
+
         99: '99%',
       },
       animation: {
