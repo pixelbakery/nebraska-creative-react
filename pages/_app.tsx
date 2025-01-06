@@ -5,7 +5,7 @@ import PlausibleProvider from 'next-plausible'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const plausibleConfig = {
-    domain: 'nebraska-creative.com',
+    domain: 'nebraskacreative.com',
     trackOutboundLinks: true,
     trackLocalhost: process.env.NODE_ENV !== 'production',
     selfHosted: true,
