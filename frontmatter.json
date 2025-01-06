@@ -81,13 +81,17 @@
           "title": "Key People",
           "name": "keyPeople",
           "type": "block",
-          "fieldGroup": ["keyPeople"]
+          "fieldGroup": [
+            "keyPeople"
+          ]
         },
         {
           "title": "Company Social Profiles",
           "name": "socialProfiles",
           "type": "block",
-          "fieldGroup": ["socialProfiles"]
+          "fieldGroup": [
+            "socialProfiles"
+          ]
         },
         {
           "title": "type",
@@ -107,36 +111,23 @@
       "path": "[[workspace]]/_companies"
     }
   ],
-  "frontMatter.taxonomy.tags": [],
   "frontMatter.taxonomy.customTaxonomy": [
     {
       "id": "locations",
-      "options": ["Omaha", "Lincoln", "NW Arkansas"]
+      "options": [
+        "Omaha",
+        "Lincoln",
+        "NW Arkansas"
+      ]
     },
     {
       "id": "services",
-      "options": ["Graphic Design", "Animation", ""]
+      "options": [
+        "Graphic Design",
+        "Animation",
+        ""
+      ]
     }
-  ],
-  "frontMatter.taxonomy.categories": [
-    "Advertising",
-    "Animation",
-    "Aerial Photo/Video",
-    "Branding",
-    "Copywriting",
-    "Creative Strategy",
-    "Field Marketing",
-    "Graphic Design",
-    "Insights",
-    "Marketing Campaigns",
-    "NIL",
-    "Print Design",
-    "Product Photography",
-    "Public Relations",
-    "Social Media",
-    "Video Production",
-    "UI/UX",
-    "Web Development"
   ],
   "frontMatter.taxonomy.fieldGroups": [
     {
